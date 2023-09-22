@@ -9,12 +9,12 @@ import cuartoEso from "../../assets/images/4eso.jpeg"
 function LoginAccess() {
   return (
     <>
-        <BackButton></BackButton>
+        <BackButton to= "/"/>
         <div className="cardsContainer">
-            <Card img_card={primeroEso} text={'1º ESO'}></Card>
-            <Card img_card={segundoEso} text={'2º ESO'}></Card>
-            <Card img_card={terceroEso} text={'3º ESO'}></Card>
-            <Card img_card={cuartoEso} text={'4º ESO'}></Card>
+            <Card img_card={primeroEso} text={'1º ESO'} to="/Eso1"></Card>
+            <Card img_card={segundoEso} text={'2º ESO'} to="/Eso2"></Card>
+            <Card img_card={terceroEso} text={'3º ESO'} to="/Eso3"></Card>
+            <Card img_card={cuartoEso} text={'4º ESO'} to="/Eso4"></Card>
         </div>
     </>
   )

@@ -1,20 +1,28 @@
+import BackButton from '../../components/backButton/BackButton';
 import { pdfs } from './arraypdf';
 import "./Eso1.css"
+import { Icon } from '@iconify/react';
+
 
 
 function Eso1() {
     console.log(pdfs)
 
     return (
-      <div>
+      <>
+      <BackButton to="/LoginAccess"/>
+      <h2 className='contents'>Documentos</h2>
+      <div className='buttons_container'>
         {pdfs.map((pdf) => (
           <button className="buttonpdf" key={pdf.title}>
             <a href={pdf.to} target="_blank" rel="noopener noreferrer" download={pdf.to}> 
+            <span className="icon"><Icon icon="line-md:download-loop" /></span>
               {pdf.title}
             </a>
           </button>
         ))}
       </div>
+      </>
     );
 }
 
