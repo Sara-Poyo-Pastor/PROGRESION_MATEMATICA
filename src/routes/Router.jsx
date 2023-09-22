@@ -7,6 +7,9 @@ import LoginAccess from '../pages/loginAccess/LoginAccess';
 import TheoryView from '../pages/theoryView/TheoryView';
 import TipsView from '../pages/tipsView/TipsView';
 import CuriositiesView from '../pages/curiositiesView/CuriositiesView';
+import LoginView from '../pages/loginView/LoginView'
+import SignUpView from '../pages/signUpView/SignUpView'
+import Eso1 from'../pages/Eso1/Eso1'
 
 const RouterItem = () => {
     return(
@@ -20,6 +23,9 @@ const RouterItem = () => {
                     <Route path='/TheoryView' element={<TheoryView/>}></Route>
                     <Route path='/TipsView' element={<TipsView/>}></Route>
                     <Route path='/CuriositiesView' element={<CuriositiesView/>}></Route>
+                    <Route path='/LoginView' element={<LoginView/>}></Route>
+                    <Route path='/SignUpView' element={<SignUpView/>}></Route>
+                    <Route path='/Eso1' element={<Eso1/>}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>

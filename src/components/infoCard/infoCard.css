@@ -11,13 +11,15 @@
     text-decoration: none;
 
 }
+
 .info_img_card{
     width: 100%;
-    max-width: 80%;
+    max-width: 50%;
     align-self: center;
-    object-fit: cover;
 }
-.info_text{
+
+h2.info_text{
+    font-size: 1.5rem;
     padding-top:20%;
     padding-bottom: 5%;
     color: white;

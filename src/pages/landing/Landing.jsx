@@ -17,8 +17,8 @@ export default function Landing(){
     </div>
         <h1 className="slogan">&#34;La esencia de las matemáticas no es hacer las cosas simples complicadas, sino hacer las cosas complicadas simples&#34;</h1>
     <div className="link_container">
-            <InfoCard img_card={info} tittle_content={'INFO'} to="InfoView"></InfoCard> />
-            <InfoCard img_card={signUp} tittle_content={'REGÍSTRATE'} to= "SingUpView" />
+            <InfoCard img_card={info} tittle_content={'INFO'} to="InfoView" />
+            <InfoCard img_card={signUp} tittle_content={'REGÍSTRATE'} to= "SignUpView" />
             <InfoCard img_card={login} tittle_content={'LOGIN'} to= "LoginView" />
             <InfoCard img_card={unlock} tittle_content={'ABIERTO'} to= "NoRegistrationAccess" />
     </div>
