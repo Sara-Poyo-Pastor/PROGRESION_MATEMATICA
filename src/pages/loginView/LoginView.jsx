@@ -1,5 +1,7 @@
 import "./LoginView.css";
 import { useState } from 'react';
+import BackButton from "../../components/backButton/BackButton";
+import axios from 'axios'; // Asegúrate de importar axios o la biblioteca que utilices para realizar solicitudes HTTP
 
 
 
@@ -7,54 +9,58 @@ function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos de inicio de sesión al servidor
-    // Por ejemplo, puedes usar fetch o axios para hacer una solicitud a tu API
-    console.log('Datos de inicio de sesión:', { email, password });
-  };
 
-  const handleCancel = () => {
-    // Agrega la lógica para cancelar el inicio de sesión
-    console.log('Inicio de sesión cancelado');
+    try {
+      const response = await axios.post('/api/login', {
+        email,
+        password,
+      });
+
+      // Si la solicitud es exitosa, puedes almacenar el token en el almacenamiento local o en el estado de la aplicación.
+      const token = response.data.token;
+      console.log('Inicio de sesión exitoso. Token:', token);
+
+      // Redirige al usuario a la página principal o a otra página después del inicio de sesión.
+      // Por ejemplo:
+      // history.push('/dashboard');
+    } catch (error) {
+      // Si la solicitud falla, puedes manejar el error adecuadamente.
+      console.error('Error al iniciar sesión:', error);
+    }
   };
 
   return (
-    <div>
-      <h2 className="loginTitle">Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Aceptar</button>
-          <button type="button" onClick={handleCancel}>Cancelar</button>
-        </div>
-      </form>
-    </div>
+    <>
+      <BackButton to="/" />
+      <div>
+        <h2 className="loginTitle">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <button type="submit">Aceptar</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 

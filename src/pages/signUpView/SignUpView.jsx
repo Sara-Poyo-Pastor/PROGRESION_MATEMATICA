@@ -1,102 +1,97 @@
 import { useState } from 'react';
 import "./SignUpView.css";
+import BackButton from '../../components/backButton/BackButton';
+import { register } from '../../../src/services/conection';
 
-
-
-function App() {
-  const [nombre, setNombre] = useState('');
-  const [apellidos, setApellidos] = useState('');
+function SignUpView() {
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleNombreChange = (e) => {
-    setNombre(e.target.value);
-  };
-
-  const handleApellidosChange = (e) => {
-    setApellidos(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Agrega aquí la lógica para registrar al usuario
-    console.log('Datos de registro:', { nombre, apellidos, email, password, confirmPassword });
-  };
-
-  const handleCancel = () => {
-    // Agrega la lógica para cancelar el registro
-    console.log('Registro cancelado');
+  
+    if (password !== confirmPassword) {
+      setErrorMessage('Las contraseñas no coinciden.');
+      return;
+    }
+  
+    try {
+      const response = await register(name, lastname, email, password);
+  
+      if (response && response.message) {
+        alert(response.message);
+      } else {
+        setErrorMessage('Respuesta no válida desde la API.');
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage(error.message || "Error al registrar usuario.");
+    }
   };
 
   return (
-    <div>
-      <h2 className='signUpTitle'>Regístrate</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='field'>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            value={nombre}
-            onChange={handleNombreChange}
-            required
-          />
-        </div>
-        <div className='field'>
-          <label>Apellidos:</label>
-          <input
-            type="text"
-            value={apellidos}
-            onChange={handleApellidosChange}
-            required
-          />
-        </div>
-        <div className='field'>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div className='field'>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <div className='field'>
-          <label>Confirmar Contraseña:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Aceptar</button>
-          <button type="button" onClick={handleCancel}>Cancelar</button>
-        </div>
-      </form>
-    </div>
+    <>
+      <BackButton to="/" />
+      <div>
+        <h2 className='signUpTitle'>Regístrate</h2>
+        {errorMessage && <div className="error">{errorMessage}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className='field'>
+            <label>Nombre:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className='field'>
+            <label>Apellidos:</label>
+            <input
+              type="text"
+              value={lastname}
+              onChange={e => setLastname(e.target.value)}
+              required
+            />
+          </div>
+          <div className='field'>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className='field'>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className='field'>
+            <label>Confirmar Contraseña:</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <button type="submit">Aceptar</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
-export default App;
+export default SignUpView;

@@ -12,6 +12,7 @@ import  BackButton  from "../../components/backButton/BackButton"
 
 function TipsView() {
     useEffect(() => {
+        // eslint-disable-next-line no-unused-vars
         const swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             grabCursor: true,
