@@ -1,35 +1,33 @@
-import "./LoginView.css";
 import { useState } from 'react';
+import "./LoginView.css";
 import BackButton from "../../components/backButton/BackButton";
-import axios from 'axios'; // Asegúrate de importar axios o la biblioteca que utilices para realizar solicitudes HTTP
-
-
+import { login } from '../../../src/services/conection';
+import { useNavigate } from 'react-router-dom';
 
 function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post('/api/login', {
-        email,
-        password,
-      });
-
-      // Si la solicitud es exitosa, puedes almacenar el token en el almacenamiento local o en el estado de la aplicación.
-      const token = response.data.token;
-      console.log('Inicio de sesión exitoso. Token:', token);
-
-      // Redirige al usuario a la página principal o a otra página después del inicio de sesión.
-      // Por ejemplo:
-      // history.push('/dashboard');
+      const response = await login(email, password);
+      if (response.message === 'Inicio de sesión exitoso') {
+        console.log('Inicio de sesión exitoso.');
+        navigate('/LoginAccess');
+        setEmail('');
+        setPassword('');
+      } else {
+        console.error('Error al iniciar sesión:', response.message);
+      }
     } catch (error) {
-      // Si la solicitud falla, puedes manejar el error adecuadamente.
-      console.error('Error al iniciar sesión:', error);
+      console.error('Error en la función de inicio de sesión:', error.message);
     }
+    
   };
+  
 
   return (
     <>

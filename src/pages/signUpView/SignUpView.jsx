@@ -11,19 +11,30 @@ function SignUpView() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const clearForm = () => {
+    setName('');
+    setLastname('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (password !== confirmPassword) {
       setErrorMessage('Las contraseñas no coinciden.');
       return;
     }
-  
+
     try {
       const response = await register(name, lastname, email, password);
-  
+
       if (response && response.message) {
         alert(response.message);
+
+        // Borra los campos del formulario después de un registro exitoso
+        clearForm();
       } else {
         setErrorMessage('Respuesta no válida desde la API.');
       }
@@ -95,3 +106,4 @@ function SignUpView() {
 }
 
 export default SignUpView;
+
