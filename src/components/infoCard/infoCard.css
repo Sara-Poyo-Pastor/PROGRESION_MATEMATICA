@@ -1,0 +1,34 @@
+.cardInfo {
+    width: 100%;
+    max-width: 20%;
+    min-width: 5%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    margin: 1%;
+    text-decoration: none;
+
+}
+
+.info_img_card{
+    width: 100%;
+    max-width: 50%;
+    align-self: center;
+}
+
+h2.info_text{
+    font-size: 1.5rem;
+    padding-top:20%;
+    padding-bottom: 5%;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-family:' Comic Neue', sans-serif;
+    font-style: italic; 
+}
+.infoTextLink {
+    color: inherit;
+    cursor: auto;
+}

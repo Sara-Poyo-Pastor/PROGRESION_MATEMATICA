@@ -1,0 +1,19 @@
+.buttonStyle{
+    width: 10vw;
+    height: 5vh;
+    margin-left: 85%;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #193073;
+    color: white;
+    border-radius: 8px;
+    border: 0;   
+    text-decoration: none; /* Agregado para eliminar el subrayado en el enlace */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.buttonStyle:hover{
+    background-color:rgba(69, 110, 231, 0.7);
+}

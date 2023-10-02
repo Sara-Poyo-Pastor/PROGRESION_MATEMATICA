@@ -1,0 +1,33 @@
+.slogan{
+    color: white;
+    text-align: center;
+    font-style: italic;
+    padding: 3%;
+    font-size: 2rem;
+    font-family:' Comic Neue', sans-serif;
+}
+a:-webkit-any-link {
+    color: inherit; 
+    /*cursor: pointer; */
+    text-decoration: none !important;
+}
+.logo_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+.logo{
+    width: 20%;
+    height: 15%;
+}
+.link_container{
+    width: 100%;
+    padding-top: 1%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
